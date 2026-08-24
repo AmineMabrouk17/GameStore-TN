@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="PES eFootball alt cover">
+  <defs>
+    <linearGradient id="pes2-bg" x1="800" y1="600" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2dd4bf"/>
+      <stop offset="0.5" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#042f2e"/>
+    </linearGradient>
+    <radialGradient id="pes2-glow" cx="48%" cy="34%" r="62%">
+      <stop stop-color="#ccfbf1" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#ccfbf1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="pes2-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+    </pattern>
+    <filter id="pes2-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#pes2-bg)"/>
+  <rect width="800" height="600" fill="url(#pes2-grid)"/>
+  <circle cx="400" cy="225" r="225" fill="url(#pes2-glow)"/>
+  <circle cx="400" cy="480" r="120" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="3"/>
+  <path d="M400 430 L448 512 L400 594 L352 512 Z" fill="#ffffff" fill-opacity="0.1"/>
+  <circle cx="400" cy="512" r="26" fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="3"/>
+  <ellipse cx="400" cy="530" rx="255" ry="68" fill="#000000" fill-opacity="0.26"/>
+  <text x="400" y="330" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="185" font-weight="900" font-style="italic" letter-spacing="6" fill="#ffffff">EF</text>
+  <text x="400" y="424" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="700" letter-spacing="16" fill="#ccfbf1">EFOOTBALL</text>
+  <rect x="305" y="458" width="190" height="6" rx="3" fill="#22d3ee"/>
+  <rect x="340" y="474" width="120" height="4" rx="2" fill="#ff2ee6"/>
+  <rect width="800" height="600" filter="url(#pes2-noise)"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Free Fire">
+  <defs>
+    <linearGradient id="ffb-bg" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fb923c"/>
+      <stop offset="0.55" stop-color="#ea580c"/>
+      <stop offset="1" stop-color="#431407"/>
+    </linearGradient>
+    <radialGradient id="ffb-glow" cx="50%" cy="35%" r="62%">
+      <stop stop-color="#fed7aa" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#fed7aa" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="ffb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+    </pattern>
+    <filter id="ffb-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#ffb-bg)"/>
+  <rect width="800" height="600" fill="url(#ffb-grid)"/>
+  <circle cx="400" cy="230" r="230" fill="url(#ffb-glow)"/>
+  <path d="M120 -40 L260 -40 L40 320 L-100 320 Z" fill="#fde047" fill-opacity="0.08"/>
+  <path d="M680 280 L820 280 L600 640 L460 640 Z" fill="#fde047" fill-opacity="0.07"/>
+  <ellipse cx="400" cy="530" rx="255" ry="70" fill="#000000" fill-opacity="0.28"/>
+  <text x="400" y="325" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="195" font-weight="900" font-style="italic" letter-spacing="8" fill="#ffffff">FF</text>
+  <text x="400" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="18" fill="#fff7ed" fill-opacity="0.9">FREE FIRE</text>
+  <rect x="295" y="458" width="210" height="6" rx="3" fill="#22d3ee"/>
+  <rect x="335" y="474" width="130" height="4" rx="2" fill="#ff2ee6"/>
+  <rect width="800" height="600" filter="url(#ffb-noise)"/>
+</svg>
