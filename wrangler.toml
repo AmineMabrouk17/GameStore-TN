@@ -1,0 +1,16 @@
+name = "gamestore-tn"
+compatibility_date = "2025-04-01"
+compatibility_flags = ["nodejs_compat"]
+main = ".open-next/worker.js"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gamestore_db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[observability]
+enabled = true
