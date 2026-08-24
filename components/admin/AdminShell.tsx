@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { ExternalLink, Gamepad2, LayoutDashboard, LogOut } from "lucide-react";
+import { ExternalLink, LayoutDashboard, LogOut } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import { Button } from "@/components/ui";
@@ -39,9 +39,12 @@ export default function AdminShell({ username, children }: AdminShellProps) {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
           <div className="flex items-center gap-3">
             <Link href="/admin/dashboard" className="flex items-center gap-2 font-black">
-              <span className="grid size-9 place-items-center rounded-xl bg-primary/15 glow-cyan">
-                <Gamepad2 className="size-5 text-primary" aria-hidden />
-              </span>
+              <img
+                src="/logo.png"
+                alt=""
+                aria-hidden
+                className="size-9 rounded-xl object-cover glow-cyan ring-1 ring-white/15"
+              />
               <span className="hidden sm:inline">
                 {ta("dashboard")}
               </span>

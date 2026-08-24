@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Gamepad2, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import { Button } from "@/components/ui";
@@ -32,9 +32,12 @@ export default function Header() {
           className="flex items-center gap-2 text-lg font-black tracking-tight"
           onClick={() => setOpen(false)}
         >
-          <span className="grid size-9 place-items-center rounded-xl bg-primary/15 glow-cyan">
-            <Gamepad2 className="size-5 text-primary" aria-hidden />
-          </span>
+          <img
+            src="/logo.png"
+            alt=""
+            aria-hidden
+            className="size-9 rounded-xl object-cover glow-cyan ring-1 ring-white/15"
+          />
           <span>
             GameStore<span className="text-gradient"> TN</span>
           </span>
