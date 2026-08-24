@@ -1,1 +1,4 @@
+# Local secrets for `wrangler dev` (read by @opennextjs/cloudflare local preview).
+# ADMIN_JWT_SECRET — HS256 key for admin session JWTs (>= 32 random chars recommended).
+# Prod: npx wrangler secret put ADMIN_JWT_SECRET
 ADMIN_JWT_SECRET="change-me-to-a-long-random-secret-at-least-32-chars"
