@@ -75,7 +75,7 @@ test.describe("mobile navigation (375px)", () => {
 
   test("catalog filter bar stacks into a single column", async ({ page }) => {
     await page.goto("/ar/catalog", { waitUntil: "networkidle" });
-    const searchInput = page.getByPlaceholder(/لوج|search/i);
+    const searchInput = page.getByPlaceholder(/لوّج|لوج|search/i);
     const box = await searchInput.boundingBox();
     const viewportWidth = page.viewportSize()?.width ?? 375;
     expect(box?.width ?? Infinity).toBeLessThan(viewportWidth - 24);
