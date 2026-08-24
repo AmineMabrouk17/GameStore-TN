@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "hash:password": "node scripts/hash-password.mjs",
     "db:schema:local": "wrangler d1 execute gamestore_db --local --file=./schema.sql",
     "db:seed:local": "wrangler d1 execute gamestore_db --local --file=./seed.sql",
     "cf:build": "opennextjs-cloudflare build",
