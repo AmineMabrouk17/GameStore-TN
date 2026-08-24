@@ -18,7 +18,7 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
     <div>
       <div className="glass relative aspect-[4/3] overflow-hidden rounded-2xl bg-black/50">
         {current ? (
-          <img src={current} alt={`${title} — ${t("imageAlt")} ${active + 1}`} className="size-full object-cover" />
+          <img src={current} alt={`${title} — ${t("imageAlt")} ${active + 1}`} className="size-full object-contain" />
         ) : (
           <div className="grid size-full place-items-center text-6xl font-black text-white/10">
             {title.slice(0, 2)}
