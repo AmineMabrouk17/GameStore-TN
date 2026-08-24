@@ -36,7 +36,7 @@ Designed specifically for the Tunisian/North African market with **Arabic (RTL)*
 | **Styling**    | [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) | Modern UI & dark/neon gaming theme         |
 | **Animations** | [Framer Motion](https://www.framer.com/motion/)                                | Smooth page transitions, scroll animations |
 | **Database**   | [Cloudflare D1](https://developers.cloudflare.com/d1/)                         | Serverless SQL database at the edge        |
-| **Deployment** | [Cloudflare Pages](https://pages.cloudflare.com/) / Workers                    | Global Edge hosting with ultra-low latency |
+| **Deployment** | [Cloudflare Workers](https://workers.cloudflare.com/) via [@opennextjs/cloudflare](https://opennext.js.org/cloudflare) | Global Edge hosting with ultra-low latency |
 | **i18n / RTL** | `next-intl`                                                                    | Arabic (RTL) & French localization         |
 | **Icons**      | [Lucide React](https://lucide.dev/)                                            | Gaming and UI icons                        |
 
@@ -134,12 +134,10 @@ CREATE TABLE IF NOT EXISTS admins (
 
 ### 1. Prerequisites
 
-- Node.js (v18 or later)
-- Cloudflare Wrangler CLI:
+- **Node.js 22** and npm 10+ (matches the CI pipeline)
+- A Cloudflare account (only needed for deployment)
 
-```bash
-npm install -g wrangler
-```
+Wrangler runs via `npx` from the project's dev dependencies — no global install required.
 
 ### 2. Installation
 
@@ -147,48 +145,43 @@ Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/AmineMabrouk17/GameStore-TN.git
-cd gamestore-tn
-npm install
+cd GameStore-TN
+npm ci
 ```
 
-### 3. Setup Cloudflare D1 Database
+### 3. Environment Files
 
-Log in to Cloudflare and create a local & remote D1 database:
+Two gitignored env files drive local development. Copy both examples and fill in a real secret:
 
 ```bash
-# Login to Cloudflare
-npx wrangler login
-
-# Create D1 Database
-npx wrangler d1 create gamestore_db
+cp .env.example .env.local
+cp .dev.vars.example .dev.vars
+openssl rand -base64 48   # paste the output as ADMIN_JWT_SECRET in both files
 ```
 
-Update your `wrangler.toml` with the generated database ID:
+| File            | Read by                          | Why it exists                                                                 |
+| :-------------- | :------------------------------- | :---------------------------------------------------------------------------- |
+| `.env.local`    | `next dev` / `next build`        | Feeds `process.env` — **required for API routes to sign session JWTs locally** |
+| `.dev.vars`     | `wrangler dev` (`cf:preview`)    | Injects secrets into the Workers runtime when previewing the built worker      |
 
-```toml
-name = "gamestore-tn"
-compatibility_date = "2024-01-01"
+> `NEXT_PUBLIC_*` variables are inlined at build/dev start — restart the dev server after changing them.
 
-[[d1_databases]]
-binding = "DB"
-database_name = "gamestore_db"
-database_id = "YOUR_DATABASE_ID_HERE"
-```
+### 4. Local D1 Database
 
-Apply the database schema locally:
+Create the schema and seed demo data in your local D1 (Miniflare state under `.wrangler/`):
 
 ```bash
-npx wrangler d1 execute gamestore_db --local --file=./schema.sql
+npm run db:schema:local
+npm run db:seed:local
 ```
 
-### 4. Environment Variables
+The seed creates an admin user whose password hash is a placeholder. Set your own before logging in:
 
-Create a `.env.local` file in the root directory:
-
-```env
-NEXT_PUBLIC_SELLER_PHONE="+216XXXXXXXX"
-NEXT_PUBLIC_WHATSAPP_NUMBER="216XXXXXXXX"
-ADMIN_JWT_SECRET="your-ultra-secure-jwt-secret"
+```bash
+npm run hash:password -- 'YourStrongPassword'
+# then update the row with the printed hash:
+npx wrangler d1 execute gamestore_db --local \
+  --command "UPDATE admins SET password_hash = '<printed-hash>' WHERE username = 'admin'"
 ```
 
 ### 5. Run the Development Server
@@ -197,7 +190,94 @@ ADMIN_JWT_SECRET="your-ultra-secure-jwt-secret"
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the storefront.
+Open [http://localhost:3000/fr](http://localhost:3000/fr) (French) or `/ar` (Arabic, RTL). `next.config.ts` calls `initOpenNextCloudflareForDev()`, so `next dev` talks to the same local D1 bindings as production.
+
+## 📜 Scripts
+
+| Script                  | Purpose                                                        |
+| :---------------------- | :-------------------------------------------------------------- |
+| `dev`                   | Next.js dev server with local Cloudflare bindings               |
+| `build`                 | Standard Next.js production build                               |
+| `start`                 | Serve the standard Node.js build                                |
+| `typecheck`             | `tsc --noEmit`                                                  |
+| `lint`                  | ESLint                                                          |
+| `test` / `test:watch`   | Vitest unit suites (run once / watch)                           |
+| `hash:password`         | Print a PBKDF2 hash for an admin password: `npm run hash:password -- '<pw>'` |
+| `db:schema:local`       | Apply `schema.sql` to the local D1 database                     |
+| `db:seed:local`         | Apply `seed.sql` to the local D1 database                       |
+| `cf:build`              | Build the OpenNext worker bundle into `.open-next/`             |
+| `cf:preview`            | Run the built worker locally via wrangler (uses `.dev.vars`)    |
+| `cf:deploy`             | Build + deploy the worker to Cloudflare                         |
+
+## 🚢 Deployment (Cloudflare Workers)
+
+### One-time setup
+
+1. **Log in to Cloudflare:**
+
+   ```bash
+   npx wrangler login
+   ```
+
+2. **Create the remote D1 database:**
+
+   ```bash
+   npx wrangler d1 create gamestore_db
+   ```
+
+3. **Wire up `wrangler.toml`:** replace `REPLACE_WITH_YOUR_D1_DATABASE_ID` with the `database_id` from the previous step.
+
+4. **Apply the remote schema** (repeat after future schema changes):
+
+   ```bash
+   npx wrangler d1 execute gamestore_db --remote --file=./schema.sql
+   ```
+
+5. **(Optional) Seed remote demo data**, then immediately rotate the admin password:
+
+   ```bash
+   npx wrangler d1 execute gamestore_db --remote --file=./seed.sql
+   npm run hash:password -- 'YourProductionPassword'
+   npx wrangler d1 execute gamestore_db --remote \
+     --command "UPDATE admins SET password_hash = '<printed-hash>' WHERE username = 'admin'"
+   ```
+
+### Deploy
+
+6. **Set the JWT secret** (prompts for a value; use the same `openssl rand -base64 48` recipe):
+
+   ```bash
+   npx wrangler secret put ADMIN_JWT_SECRET
+   ```
+
+7. **Build & deploy:** `NEXT_PUBLIC_*` values are inlined at build time, so export them in the shell (or CI environment) first:
+
+   ```bash
+   export NEXT_PUBLIC_SELLER_PHONE="+216XXXXXXXX"
+   export NEXT_PUBLIC_WHATSAPP_NUMBER="216XXXXXXXX"
+   # optional, for absolute OG/canonical URLs:
+   export NEXT_PUBLIC_SITE_URL="https://your-domain.tn"
+   npm run cf:deploy
+   ```
+
+8. **Smoke-check the deployment:** storefront renders products → admin login works → create/edit/delete round-trip → WhatsApp button opens a pre-filled message.
+
+## 🔐 Secrets Checklist
+
+| Variable                      | Kind              | Used by                                  | Local source                | Production                              |
+| :---------------------------- | :---------------- | :--------------------------------------- | :-------------------------- | :-------------------------------------- |
+| `ADMIN_JWT_SECRET`            | Secret            | `lib/auth/session.ts` (HS256 sessions)   | `.env.local` + `.dev.vars`  | `npx wrangler secret put ADMIN_JWT_SECRET` |
+| `NEXT_PUBLIC_SELLER_PHONE`    | Public build-time | `lib/whatsapp.ts` (tel: links)           | `.env.local`                | Shell/CI env at `cf:build` time         |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Public build-time | `lib/whatsapp.ts` (wa.me links)          | `.env.local`                | Shell/CI env at `cf:build` time         |
+| `NEXT_PUBLIC_SITE_URL`        | Public build-time | SEO `metadataBase` (canonical/OG URLs)   | `.env.local` (optional)     | Shell/CI env at `cf:build` time (optional) |
+
+## 🧪 Quality Gates
+
+Run the full gate locally before opening a PR (CI runs the same pipeline on every PR):
+
+```bash
+npm run typecheck && npm run lint && npm test && npm run build
+```
 
 ## 🌐 WhatsApp Integration Details
 
@@ -209,20 +289,3 @@ const message = encodeURIComponent(
 );
 const whatsappUrl = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${message}`;
 ```
-
-## 🚢 Deployment to Cloudflare Pages
-
-1. **Deploy D1 Migrations to Production:**
-
-   ```bash
-   npx wrangler d1 execute gamestore_db --remote --file=./schema.sql
-   ```
-
-2. **Deploy the Next.js App:**
-
-   ```bash
-   npm run build
-   npx wrangler pages deploy .vercel/output/static
-   ```
-
-   (Or connect your GitHub repository directly to Cloudflare Pages via the dashboard).
