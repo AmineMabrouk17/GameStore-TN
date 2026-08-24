@@ -138,5 +138,9 @@
     "notFoundSubtitle": "Le lien que vous avez suivi est incorrect ou la page a été déplacée.",
     "backHome": "Retour à l'accueil",
     "genericError": "Une erreur inattendue s'est produite. Veuillez réessayer dans un instant."
+  },
+  "storefront": {
+    "ctaTitle": "Une question ? Parlons-en maintenant",
+    "ctaSubtitle": "L'équipe GameStore TN est disponible sur WhatsApp pour répondre à toutes vos questions et vous aider à trouver le compte qui vous convient."
   }
 }
