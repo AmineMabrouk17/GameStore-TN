@@ -14,6 +14,9 @@ import { productCreateSchema } from "@/lib/validation";
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
+  const session = await requireAdmin();
+  if (!session) return unauthorizedResponse();
+
   return handleListProducts(request);
 }
 
