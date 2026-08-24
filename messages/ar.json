@@ -122,6 +122,20 @@
     "uncategorized": "بلا فئة",
     "backToStore": "رجوع للمتجر"
   },
+  "adminForm": {
+    "descriptionAr": "الوصف بالعربية",
+    "descriptionFr": "الوصف بالفرنسية",
+    "currency": "العملة",
+    "imageHint": "روابط الصور (حتى 6 صور)",
+    "slug": "المعرّف (بالإنجليزية)",
+    "all": "الكل",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {page} من {total}",
+    "noProducts": "ما فما حتى حساب — زيد أول حساب متاعك!",
+    "categoryCreated": "تأنشأت الفئة بنجاح",
+    "operationFailed": "فشلت العملية، عاود الجرب"
+  },
   "common": {
     "loading": "جاري التحميل…",
     "error": "صرات مشكلة",
