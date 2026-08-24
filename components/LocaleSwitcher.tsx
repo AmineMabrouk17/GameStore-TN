@@ -44,14 +44,16 @@ function Switcher() {
             type="button"
             onClick={() => switchTo(loc)}
             disabled={pending}
+            aria-label={LOCALE_LABELS[loc]}
             aria-pressed={isActive}
-            className={`rounded-full px-3 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 ${
+            className={`rounded-full px-2.5 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 sm:px-3 ${
               isActive
                 ? "bg-emerald-500 text-neutral-950"
                 : "text-neutral-300 hover:text-white"
             } ${pending ? "opacity-60" : ""}`}
           >
-            {LOCALE_LABELS[loc]}
+            <span className="hidden sm:inline">{LOCALE_LABELS[loc]}</span>
+            <span className="sm:hidden">{loc.toUpperCase()}</span>
           </button>
         );
       })}

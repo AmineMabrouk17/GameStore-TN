@@ -114,6 +114,16 @@ export default function ProductFormDialog({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, product]);
 
+  // If the dialog opened before categories finished loading, adopt the first one.
+  useEffect(() => {
+    if (!open) return;
+    setForm((prev) =>
+      prev.category_id || categories.length === 0
+        ? prev
+        : { ...prev, category_id: categories[0].id },
+    );
+  }, [open, categories]);
+
   function updateField<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
