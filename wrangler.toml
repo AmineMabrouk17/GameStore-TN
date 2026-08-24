@@ -6,7 +6,7 @@ main = ".open-next/worker.js"
 [[d1_databases]]
 binding = "DB"
 database_name = "gamestore_db"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "8f97c9f2-8820-493a-8bec-4622d2690760"
 
 [assets]
 directory = ".open-next/assets"
