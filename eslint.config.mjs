@@ -24,6 +24,8 @@ const eslintConfig = [
       ".wrangler/**",
       "out/**",
       "next-env.d.ts",
+      "playwright-report/**",
+      "test-results/**",
     ],
   },
 ];

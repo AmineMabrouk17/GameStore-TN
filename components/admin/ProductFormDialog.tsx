@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Loader2, Plus, Star, Trash2 } from "lucide-react";
+import { Loader2, Plus, Star, Trash2, Upload } from "lucide-react";
 import {
   Button,
   Dialog,
@@ -68,6 +68,9 @@ export default function ProductFormDialog({
   const [images, setImages] = useState<string[]>([]);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [saving, setSaving] = useState(false);
+  const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
+  const uploadTargetIndex = useRef<number | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [showNewCategory, setShowNewCategory] = useState(false);
   const [newCategoryNameAr, setNewCategoryNameAr] = useState("");
@@ -205,6 +208,48 @@ export default function ProductFormDialog({
 
   function fieldError(key: string): string | undefined {
     return errors[key];
+  }
+
+  async function handleFileSelected(event: React.ChangeEvent<HTMLInputElement>) {
+    const index = uploadTargetIndex.current;
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (index === null || !file) return;
+
+    setUploadingIndex(index);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      const response = await fetch("/api/admin/uploads", {
+        method: "POST",
+        credentials: "same-origin",
+        body,
+      });
+      const payload = (await response.json().catch(() => null)) as {
+        url?: string;
+        error?: string;
+      } | null;
+      const url = typeof payload?.url === "string" ? payload.url : null;
+      if (!response.ok || url === null) {
+        throw new ApiError(
+          response.status,
+          payload?.error ?? `Upload failed (${response.status})`,
+        );
+      }
+      setImages((prev) =>
+        prev.map((item, itemIndex) => (itemIndex === index ? url : item)),
+      );
+      toast.success(tf("imageUploaded"));
+    } catch (err) {
+      toast.error(err instanceof ApiError ? err.message : tf("operationFailed"));
+    } finally {
+      setUploadingIndex(null);
+    }
+  }
+
+  function openDevicePicker(index: number) {
+    uploadTargetIndex.current = index;
+    fileInputRef.current?.click();
   }
 
   return (
@@ -399,6 +444,28 @@ export default function ProductFormDialog({
                   }
                   placeholder="/games/free-fire.svg or https://…"
                 />
+                {image && (
+                  <img
+                    src={image}
+                    alt=""
+                    className="hidden size-10 shrink-0 rounded-md border border-white/10 object-cover sm:block"
+                  />
+                )}
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  aria-label={tf("uploadImage")}
+                  title={tf("uploadImage")}
+                  disabled={uploadingIndex !== null}
+                  onClick={() => openDevicePicker(index)}
+                >
+                  {uploadingIndex === index ? (
+                    <Loader2 className="size-4 animate-spin" aria-hidden />
+                  ) : (
+                    <Upload className="size-4 text-emerald-300" aria-hidden />
+                  )}
+                </Button>
                 <Button
                   type="button"
                   variant="ghost"
@@ -410,6 +477,13 @@ export default function ProductFormDialog({
                 </Button>
               </div>
             ))}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/png,image/jpeg,image/webp,image/gif"
+              className="hidden"
+              onChange={handleFileSelected}
+            />
             {images.length < 6 && (
               <Button
                 type="button"

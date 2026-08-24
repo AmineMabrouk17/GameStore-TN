@@ -1,5 +1,5 @@
 import { useLocale, useTranslations } from "next-intl";
-import { Gamepad2, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/types";
 
@@ -17,9 +17,12 @@ export default function Footer({ categories = [] }: FooterProps) {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 text-lg font-black">
-            <span className="grid size-9 place-items-center rounded-xl bg-primary/15 glow-cyan">
-              <Gamepad2 className="size-5 text-primary" aria-hidden />
-            </span>
+            <img
+              src="/logo.png"
+              alt=""
+              aria-hidden
+              className="size-9 rounded-xl object-cover glow-cyan ring-1 ring-white/15"
+            />
             GameStore<span className="text-gradient"> TN</span>
           </div>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-neutral-400">

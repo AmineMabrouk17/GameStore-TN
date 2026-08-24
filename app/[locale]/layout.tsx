@@ -40,6 +40,10 @@ export async function generateMetadata({
       template: `%s | ${SITE_NAME}`,
     },
     description: t("description"),
+    icons: {
+      icon: "/logo.png",
+      apple: "/logo.png",
+    },
     alternates: localeAlternates(locale, "/"),
     openGraph: {
       type: "website",
