@@ -23,6 +23,7 @@ const eslintConfig = [
       ".open-next/**",
       ".wrangler/**",
       "out/**",
+      "next-env.d.ts",
     ],
   },
 ];
