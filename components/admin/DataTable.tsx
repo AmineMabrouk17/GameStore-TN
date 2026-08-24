@@ -83,7 +83,7 @@ export default function DataTable({
               onClick={() => onTabChange(item.value)}
               aria-pressed={tab === item.value}
               className={cn(
-                "rounded-full px-4 py-1.5 text-sm font-bold transition-colors",
+                "rounded-full px-4 py-1.5 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
                 tab === item.value
                   ? "bg-primary text-neutral-950 glow-cyan"
                   : "bg-white/5 text-neutral-300 hover:bg-white/10",

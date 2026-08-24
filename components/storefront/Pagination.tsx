@@ -24,13 +24,13 @@ export default function Pagination({ page, pageSize, total, query }: PaginationP
     <nav className="mt-10 flex items-center justify-center gap-3" aria-label={t("resultsCount", { count: total })}>
       {page > 1 ? (
         <Link href={pageHref(query, page - 1)} scroll={false}>
-          <Button variant="secondary" size="sm" aria-label="previous">
+          <Button variant="secondary" size="sm" aria-label={t("previousPage")}>
             <ChevronLeft className="size-4 rtl:hidden" aria-hidden />
             <ChevronRight className="size-4 ltr:hidden" aria-hidden />
           </Button>
         </Link>
       ) : (
-        <Button variant="secondary" size="sm" disabled aria-label="previous">
+        <Button variant="secondary" size="sm" disabled aria-label={t("previousPage")}>
           <ChevronLeft className="size-4 rtl:hidden" aria-hidden />
           <ChevronRight className="size-4 ltr:hidden" aria-hidden />
         </Button>
@@ -42,13 +42,13 @@ export default function Pagination({ page, pageSize, total, query }: PaginationP
 
       {page < totalPages ? (
         <Link href={pageHref(query, page + 1)} scroll={false}>
-          <Button variant="secondary" size="sm" aria-label="next">
+          <Button variant="secondary" size="sm" aria-label={t("nextPage")}>
             <ChevronRight className="size-4 rtl:hidden" aria-hidden />
             <ChevronLeft className="size-4 ltr:hidden" aria-hidden />
           </Button>
         </Link>
       ) : (
-        <Button variant="secondary" size="sm" disabled aria-label="next">
+        <Button variant="secondary" size="sm" disabled aria-label={t("nextPage")}>
           <ChevronRight className="size-4 rtl:hidden" aria-hidden />
           <ChevronLeft className="size-4 ltr:hidden" aria-hidden />
         </Button>

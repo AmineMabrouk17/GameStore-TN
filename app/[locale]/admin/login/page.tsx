@@ -43,7 +43,7 @@ export default function AdminLoginPage() {
     setSubmitting(true);
     try {
       await api.post("/api/auth/login", { username, password });
-      toast.success(t("signIn"));
+      toast.success(t("loginSuccess"));
       router.replace("/admin/dashboard");
       router.refresh();
     } catch (err) {

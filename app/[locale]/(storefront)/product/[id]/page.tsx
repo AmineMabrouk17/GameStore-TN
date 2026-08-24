@@ -12,6 +12,7 @@ import { FadeIn } from "@/components/animations/FadeIn";
 import ProductGallery from "@/components/storefront/ProductGallery";
 import ProductCard from "@/components/storefront/ProductCard";
 import type { Locale } from "@/types";
+import { getMetadataBase, localeAlternates, openGraphLocale, SITE_NAME } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +26,8 @@ async function loadProduct(id: string) {
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { locale, id } = await params;
+  const { locale: rawLocale, id } = await params;
+  const locale = (rawLocale === "fr" ? "fr" : "ar") as Locale;
   let product = null;
   try {
     product = await loadProduct(id);
@@ -39,16 +41,29 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const description =
     (isAr ? product.description_ar : product.description_fr) ??
     (isAr ? product.title_ar : product.title_fr);
+  const og = openGraphLocale(locale);
+  const images = product.images.length > 0 ? [{ url: product.images[0] }] : undefined;
 
   return {
+    metadataBase: getMetadataBase(),
     title,
     description: description.slice(0, 160),
-    openGraph: { title, description: description.slice(0, 160) },
-    alternates: {
-      languages: {
-        ar: `/ar/product/${product.id}`,
-        fr: `/fr/product/${product.id}`,
-      },
+    alternates: localeAlternates(locale, `/product/${product.id}`),
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      locale: og.locale,
+      alternateLocale: og.alternate,
+      url: `/${locale}/product/${product.id}`,
+      title,
+      description: description.slice(0, 160),
+      images,
+    },
+    twitter: {
+      card: images ? "summary_large_image" : "summary",
+      title,
+      description: description.slice(0, 160),
+      images,
     },
   };
 }

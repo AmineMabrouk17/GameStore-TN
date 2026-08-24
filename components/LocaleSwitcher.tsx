@@ -45,7 +45,7 @@ function Switcher() {
             onClick={() => switchTo(loc)}
             disabled={pending}
             aria-pressed={isActive}
-            className={`rounded-full px-3 py-1.5 transition-colors ${
+            className={`rounded-full px-3 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 ${
               isActive
                 ? "bg-emerald-500 text-neutral-950"
                 : "text-neutral-300 hover:text-white"
