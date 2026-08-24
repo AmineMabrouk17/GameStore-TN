@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Steam AAA library alt cover">
+  <defs>
+    <linearGradient id="stm2-bg" x1="0" y1="600" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#818cf8"/>
+      <stop offset="0.5" stop-color="#4338ca"/>
+      <stop offset="1" stop-color="#12102e"/>
+    </linearGradient>
+    <radialGradient id="stm2-glow" cx="52%" cy="36%" r="60%">
+      <stop stop-color="#c7d2fe" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#c7d2fe" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="stm2-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+    </pattern>
+    <filter id="stm2-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#stm2-bg)"/>
+  <rect width="800" height="600" fill="url(#stm2-grid)"/>
+  <circle cx="395" cy="230" r="225" fill="url(#stm2-glow)"/>
+  <path d="M400 130 L432 190 L496 196 L450 240 L464 304 L400 272 L336 304 L350 240 L304 196 L368 190 Z" fill="#fde047" fill-opacity="0.35"/>
+  <ellipse cx="400" cy="528" rx="260" ry="70" fill="#000000" fill-opacity="0.3"/>
+  <text x="400" y="320" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="185" font-weight="900" font-style="italic" letter-spacing="10" fill="#ffffff">GG</text>
+  <text x="400" y="416" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="700" letter-spacing="14" fill="#e0e7ff">AAA COLLECTION</text>
+  <rect x="300" y="456" width="200" height="6" rx="3" fill="#22d3ee"/>
+  <rect x="338" y="472" width="124" height="4" rx="2" fill="#ff2ee6"/>
+  <rect width="800" height="600" filter="url(#stm2-noise)"/>
+</svg>

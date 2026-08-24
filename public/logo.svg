@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="GameStore TN logo">
+  <defs>
+    <linearGradient id="gs-logo-g" x1="10" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="0.55" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#ff2ee6"/>
+    </linearGradient>
+    <linearGradient id="gs-logo-f" x1="16" y1="24" x2="48" y2="42" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#ff2ee6" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 3.5 L56.5 17.75 V46.25 L32 60.5 L7.5 46.25 V17.75 Z" stroke="url(#gs-logo-g)" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="15" y="24" width="34" height="17" rx="8.5" stroke="url(#gs-logo-g)" stroke-width="3.5" fill="url(#gs-logo-f)"/>
+  <path d="M21.5 32.5 H29.5 M25.5 28.5 V36.5" stroke="#22d3ee" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="40" cy="30" r="2.4" fill="#22d3ee"/>
+  <circle cx="44.5" cy="35" r="2.4" fill="#ff2ee6"/>
+</svg>
