@@ -49,9 +49,9 @@ export default function AdminShell({ username, children }: AdminShellProps) {
             <Link
               href="/admin/dashboard"
               aria-current={pathname === "/admin/dashboard" ? "page" : undefined}
-              className="flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white"
+              className="hidden items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white min-[420px]:flex"
             >
-              <LayoutDashboard className="size-4" aria-hidden />
+              <LayoutDashboard className="size-4 shrink-0" aria-hidden />
               {ta("products")}
             </Link>
           </div>

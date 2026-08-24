@@ -12,6 +12,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "hash:password": "node scripts/hash-password.mjs",
     "db:schema:local": "wrangler d1 execute gamestore_db --local --file=./schema.sql",
     "db:seed:local": "wrangler d1 execute gamestore_db --local --file=./seed.sql",
@@ -36,6 +38,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",
     "@opennextjs/cloudflare": "^1.20.2",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",

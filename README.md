@@ -202,6 +202,7 @@ Open [http://localhost:3000/fr](http://localhost:3000/fr) (French) or `/ar` (Ara
 | `typecheck`             | `tsc --noEmit`                                                  |
 | `lint`                  | ESLint                                                          |
 | `test` / `test:watch`   | Vitest unit suites (run once / watch)                           |
+| `test:e2e`              | Playwright e2e suite (see `tests/e2e/README.md`)                |
 | `hash:password`         | Print a PBKDF2 hash for an admin password: `npm run hash:password -- '<pw>'` |
 | `db:schema:local`       | Apply `schema.sql` to the local D1 database                     |
 | `db:seed:local`         | Apply `seed.sql` to the local D1 database                       |
