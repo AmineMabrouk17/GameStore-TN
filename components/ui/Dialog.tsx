@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   createContext,
   useCallback,
@@ -63,6 +64,7 @@ export function DialogContent({
   ...props
 }: DialogContentProps) {
   const { open, onOpenChange } = useDialogContext();
+  const tc = useTranslations("common");
   const [mounted, setMounted] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -126,7 +128,7 @@ export function DialogContent({
               <button
                 type="button"
                 onClick={() => onOpenChange(false)}
-                aria-label="Close"
+                aria-label={tc("close")}
                 className="absolute end-4 top-4 rounded-md p-1 text-muted-foreground transition-colors hover:bg-white/[0.08] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:outline-none"
               >
                 <X className="size-4" aria-hidden />

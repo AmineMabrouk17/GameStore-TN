@@ -5,6 +5,7 @@ import { getDb } from "@/lib/db";
 import { list as listCategories } from "@/lib/repositories/categories";
 import { list as listProducts } from "@/lib/repositories/products";
 import { productQuerySchema } from "@/lib/validation";
+import { localeAlternates } from "@/lib/seo";
 import FilterBar from "@/components/storefront/FilterBar";
 import ProductCard from "@/components/storefront/ProductCard";
 import EmptyState from "@/components/storefront/EmptyState";
@@ -19,9 +20,18 @@ function firstValue(value: string | string[] | undefined): string | undefined {
   return value;
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations("catalog");
-  return { title: t("title"), description: t("subtitle") };
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: localeAlternates(locale, "/catalog"),
+  };
 }
 
 function parseFilters(searchParams: SearchParams) {

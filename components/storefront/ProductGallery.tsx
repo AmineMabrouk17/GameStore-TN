@@ -27,22 +27,21 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
       </div>
 
       {images.length > 1 && (
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label={t("imageAlt")}>
+        <div className="mt-3 flex gap-2 overflow-x-auto pb-1" role="group" aria-label={t("imageAlt")}>
           {images.map((image, index) => (
             <button
               key={image + index}
               type="button"
-              role="tab"
-              aria-selected={index === active}
+              aria-label={`${t("imageAlt")} ${index + 1}`}
+              aria-pressed={index === active}
               onClick={() => setActive(index)}
               className={cn(
-                "relative aspect-[4/3] w-20 shrink-0 overflow-hidden rounded-lg border-2 bg-black/50 transition-all",
+                "relative aspect-[4/3] w-20 shrink-0 overflow-hidden rounded-lg border-2 bg-black/50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
                 index === active
                   ? "border-primary glow-cyan"
                   : "border-white/10 opacity-60 hover:opacity-100",
               )}
             >
-              { }
               <img src={image} alt="" className="size-full object-cover" />
             </button>
           ))}

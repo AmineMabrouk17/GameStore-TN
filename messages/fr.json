@@ -8,7 +8,10 @@
     "catalog": "Boutique",
     "howItWorks": "Comment ça marche",
     "admin": "Administration",
-    "viewStore": "Voir la boutique"
+    "viewStore": "Voir la boutique",
+    "menu": "Navigation principale",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "hero": {
     "badge": "La plateforme n°1 des comptes gaming en Tunisie",
@@ -43,6 +46,8 @@
     "apply": "Appliquer",
     "reset": "Réinitialiser",
     "resultsCount": "{count, plural, =0 {aucun résultat} one {# résultat} other {# résultats}}",
+    "previousPage": "Page précédente",
+    "nextPage": "Page suivante",
     "emptyTitle": "Aucun résultat",
     "emptySubtitle": "Élargissez vos critères ou revenez plus tard — de nouveaux comptes arrivent régulièrement."
   },
@@ -84,6 +89,7 @@
     "signIn": "Se connecter",
     "signingIn": "Connexion en cours…",
     "invalidCredentials": "Nom d'utilisateur ou mot de passe incorrect.",
+    "loginSuccess": "Connexion réussie. Bienvenue !",
     "loggedOut": "Vous avez été déconnecté.",
     "logout": "Déconnexion"
   },
@@ -151,6 +157,7 @@
     "notFoundTitle": "Page introuvable",
     "notFoundSubtitle": "Le lien que vous avez suivi est incorrect ou la page a été déplacée.",
     "backHome": "Retour à l'accueil",
+    "errorTitle": "Oups ! Une erreur est survenue",
     "genericError": "Une erreur inattendue s'est produite. Veuillez réessayer dans un instant."
   },
   "storefront": {

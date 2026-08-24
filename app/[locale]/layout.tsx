@@ -6,6 +6,8 @@ import { hasLocale } from "use-intl";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import Toaster from "@/components/providers/Toaster";
+import { SITE_NAME, getMetadataBase, localeAlternates, openGraphLocale } from "@/lib/seo";
 import "../globals.css";
 
 const ARABIC_FONT_STACK =
@@ -26,14 +28,33 @@ export async function generateMetadata({
   params,
 }: Omit<LayoutProps, "children">): Promise<Metadata> {
   const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
+
   const t = await getTranslations({ locale, namespace: "metadata" });
+  const og = openGraphLocale(locale);
 
   return {
+    metadataBase: getMetadataBase(),
     title: {
       default: t("title"),
-      template: "%s | GameStore TN",
+      template: `%s | ${SITE_NAME}`,
     },
     description: t("description"),
+    alternates: localeAlternates(locale, "/"),
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      locale: og.locale,
+      alternateLocale: og.alternate,
+      url: `/${locale}`,
+      title: t("title"),
+      description: t("description"),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
   };
 }
 
@@ -59,6 +80,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         }}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Toaster locale={locale} />
           {children}
         </NextIntlClientProvider>
       </body>

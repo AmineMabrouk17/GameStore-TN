@@ -40,7 +40,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label={t("home")}>
+        <nav className="hidden items-center gap-1 md:flex" aria-label={t("menu")}>
           {NAV_ITEMS.map((item) => {
             const active =
               item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -49,7 +49,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-bold transition-colors",
+                  "rounded-full px-4 py-2 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
                   active
                     ? "bg-white/10 text-white"
                     : "text-neutral-300 hover:bg-white/5 hover:text-white",
@@ -77,8 +77,8 @@ export default function Header() {
           )}
           <button
             type="button"
-            className="grid size-9 place-items-center rounded-lg text-neutral-300 hover:bg-white/10 hover:text-white md:hidden"
-            aria-label={open ? "close menu" : "open menu"}
+            className="grid size-9 place-items-center rounded-lg text-neutral-300 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 md:hidden"
+            aria-label={open ? t("closeMenu") : t("openMenu")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
@@ -88,12 +88,12 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-white/10 px-4 py-3 md:hidden" aria-label="mobile">
+        <nav className="border-t border-white/10 px-4 py-3 md:hidden" aria-label={t("menu")}>
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="block rounded-lg px-3 py-2.5 text-sm font-bold text-neutral-200 hover:bg-white/10"
+              className="block rounded-lg px-3 py-2.5 text-sm font-bold text-neutral-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
               onClick={() => setOpen(false)}
             >
               {t(item.key)}
