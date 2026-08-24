@@ -263,6 +263,23 @@ Open [http://localhost:3000/fr](http://localhost:3000/fr) (French) or `/ar` (Ara
 
 8. **Smoke-check the deployment:** storefront renders products → admin login works → create/edit/delete round-trip → WhatsApp button opens a pre-filled message.
 
+### CI/CD (automatic deploys)
+
+Every push to `main` runs the gate job (typecheck, lint, unit tests, build) and
+then deploys to Cloudflare production automatically. Required repository settings:
+
+| Setting | Where | Value |
+| :-- | :-- | :-- |
+| `CLOUDFLARE_API_TOKEN` | Actions secret | Token with **Workers Scripts: Edit** + **D1: Edit** permissions |
+| `CLOUDFLARE_ACCOUNT_ID` | Actions secret | Your Cloudflare account ID |
+| `NEXT_PUBLIC_SELLER_PHONE` | Actions variable | e.g. `+21692390892` |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Actions variable | e.g. `21692390892` |
+| `NEXT_PUBLIC_SITE_URL` | Actions variable (optional) | Canonical origin for SEO URLs |
+
+The workflow applies the idempotent `schema.sql` to the remote D1 database
+before each deploy; `ADMIN_JWT_SECRET` stays a runtime Worker secret and is
+never needed at build time.
+
 ## 🔐 Secrets Checklist
 
 | Variable                      | Kind              | Used by                                  | Local source                | Production                              |
