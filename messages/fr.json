@@ -122,6 +122,20 @@
     "uncategorized": "Sans catégorie",
     "backToStore": "Retour à la boutique"
   },
+  "adminForm": {
+    "descriptionAr": "Description en arabe",
+    "descriptionFr": "Description en français",
+    "currency": "Devise",
+    "imageHint": "URLs des images (6 max)",
+    "slug": "Slug (en anglais)",
+    "all": "Tous",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageOf": "Page {page} sur {total}",
+    "noProducts": "Aucun produit — ajoutez votre première annonce !",
+    "categoryCreated": "Catégorie créée avec succès",
+    "operationFailed": "L'opération a échoué, réessayez"
+  },
   "common": {
     "loading": "Chargement…",
     "error": "Une erreur est survenue",
