@@ -104,6 +104,19 @@ test.describe("add-account form — input selection", () => {
     await expect(featured).not.toBeChecked();
   });
 
+  test("typing keeps focus in the field (no re-click after each keystroke)", async ({
+    page,
+  }) => {
+    const dialog = await openAddAccountDialog(page);
+    const title = dialog.locator("#title_fr");
+
+    await title.click();
+    await page.keyboard.type("FIFA 2026 account", { delay: 40 });
+
+    await expect(title).toHaveValue("FIFA 2026 account");
+    await expect(title).toBeFocused();
+  });
+
   test("creating an account end-to-end works from the form", async ({
     request,
     page,

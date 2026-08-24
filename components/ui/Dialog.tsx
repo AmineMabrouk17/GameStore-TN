@@ -74,6 +74,15 @@ export function DialogContent({
     return () => setMounted(false);
   }, []);
 
+  // Keep the latest callback without re-running the open/close effect below —
+  // callers typically pass inline arrows, which change identity every render
+  // (e.g. on each keystroke inside the dialog) and would otherwise re-trigger
+  // panel focus, stealing it from whichever input the user is typing in.
+  const onOpenChangeRef = useRef(onOpenChange);
+  useEffect(() => {
+    onOpenChangeRef.current = onOpenChange;
+  });
+
   useEffect(() => {
     if (!open) return;
 
@@ -81,7 +90,7 @@ export function DialogContent({
     panelRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onOpenChange(false);
+      if (event.key === "Escape") onOpenChangeRef.current(false);
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -93,7 +102,7 @@ export function DialogContent({
       document.body.style.overflow = previousOverflow;
       previousFocusRef.current?.focus();
     };
-  }, [open, onOpenChange]);
+  }, [open]);
 
   if (!mounted) return null;
 
