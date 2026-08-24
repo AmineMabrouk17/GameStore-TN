@@ -2,11 +2,13 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { BadgeCheck, Clock, MessageCircle, Phone, Star } from "lucide-react";
+import FacebookIcon from "@/components/FacebookIcon";
 import { Link } from "@/i18n/navigation";
 import { Badge, Button } from "@/components/ui";
 import { TiltCard } from "@/components/animations/TiltCard";
 import { formatPrice } from "@/lib/format";
 import { buildTelUrl, buildWhatsappUrl } from "@/lib/whatsapp";
+import { FACEBOOK_PAGE_URL } from "@/lib/facebook";
 import type { Locale, ProductStatus, ProductWithCategory } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -109,6 +111,13 @@ export default function ProductCard({ product }: ProductCardProps) {
               <Button size="sm" className="flex-1" disabled>
                 {tp("soldOut")}
               </Button>
+            )}
+            {!isSold && (
+              <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer">
+                <Button size="sm" variant="secondary" aria-label={tc("facebook")}>
+                  <FacebookIcon className="size-4" aria-hidden />
+                </Button>
+              </a>
             )}
             {!isSold && telHref && (
               <a href={telHref}>

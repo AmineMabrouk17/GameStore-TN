@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
+import FacebookIcon from "@/components/FacebookIcon";
 import { Link, usePathname } from "@/i18n/navigation";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import { Button } from "@/components/ui";
 import { buildGenericWhatsappUrl } from "@/lib/whatsapp";
+import { FACEBOOK_PAGE_URL } from "@/lib/facebook";
 import type { Locale } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -66,6 +68,17 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <LocaleSwitcher />
+          <a
+            href={FACEBOOK_PAGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:block"
+          >
+            <Button size="sm" variant="secondary" aria-label={tc("facebook")}>
+              <FacebookIcon className="size-4" aria-hidden />
+              <span className="hidden lg:inline">{tc("facebook")}</span>
+            </Button>
+          </a>
           {whatsappHref && (
             <a
               href={whatsappHref}

@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { ArrowRight, BadgeCheck, CalendarDays, MessageCircle, Phone, Tag } from "lucide-react";
+import FacebookIcon from "@/components/FacebookIcon";
 import { Link } from "@/i18n/navigation";
 import { getDb } from "@/lib/db";
 import { getById, list as listProducts } from "@/lib/repositories/products";
 import { formatDate, formatPrice } from "@/lib/format";
 import { buildTelUrl, buildWhatsappUrl } from "@/lib/whatsapp";
+import { FACEBOOK_PAGE_URL } from "@/lib/facebook";
 import { Badge, Button, Separator } from "@/components/ui";
 import { FadeIn } from "@/components/animations/FadeIn";
 import ProductGallery from "@/components/storefront/ProductGallery";
@@ -73,6 +75,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const locale = (rawLocale === "fr" ? "fr" : "ar") as Locale;
   const t = await getTranslations("catalog");
   const tp = await getTranslations("product");
+  const tc = await getTranslations("common");
 
   const product = await loadProduct(id);
   if (!product) notFound();
@@ -88,8 +91,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   const isAr = locale === "ar";
   const title = isAr ? product.title_ar : product.title_fr;
-  const description =
-    (isAr ? product.description_ar : product.description_fr) ?? "";
+  const description = (isAr ? product.description_ar : product.description_fr) ?? "";
   const categoryName = product.category
     ? isAr
       ? product.category.name_ar
@@ -156,19 +158,26 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <Separator className="my-6" />
 
           <div className="flex flex-col gap-3 sm:flex-row">
+            {!isSold && (
+              <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer" className="flex-1">
+                <Button size="lg" className="w-full glow-cyan">
+                  <FacebookIcon className="size-5" aria-hidden />
+                  {tp("contactFacebook")}
+                </Button>
+              </a>
+            )}
             {!isSold && whatsappHref && (
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex-1">
-                <Button size="lg" className="w-full glow-cyan">
+                <Button size="lg" variant="secondary" className="w-full glow-magenta">
                   <MessageCircle className="size-5" aria-hidden />
                   {tp("contactWhatsapp")}
                 </Button>
               </a>
             )}
             {!isSold && telHref && (
-              <a href={telHref} className="flex-1">
-                <Button size="lg" variant="secondary" className="w-full glow-magenta">
+              <a href={telHref}>
+                <Button size="lg" variant="outline" aria-label={tc("call")}>
                   <Phone className="size-5" aria-hidden />
-                  {tp("callToBuy")}
                 </Button>
               </a>
             )}
@@ -182,14 +191,18 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </FadeIn>
       </div>
 
-      {description && (
-        <section className="mt-14 max-w-3xl">
-          <h2 className="text-xl font-black">{tp("description")}</h2>
+      <section className="mt-14 max-w-3xl">
+        <h2 className="text-xl font-black">{tp("description")}</h2>
+        {description ? (
           <p className="glass mt-4 whitespace-pre-line rounded-2xl p-6 text-sm leading-relaxed text-neutral-200">
             {description}
           </p>
-        </section>
-      )}
+        ) : (
+          <p className="glass mt-4 rounded-2xl p-6 text-sm leading-relaxed text-neutral-400">
+            {tp("noDescription")}
+          </p>
+        )}
+      </section>
 
       {related.length > 0 && (
         <section className="mt-20">

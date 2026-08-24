@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "GameStore TN — Comptes gaming en Tunisie",
-    "description": "La plateforme tunisienne pour acheter et vendre des comptes gaming : PES, eFootball, Free Fire et plus encore. Prix en dinars, contact direct via WhatsApp, transactions sûres et rapides."
+    "description": "La plateforme tunisienne pour acheter et vendre des comptes gaming : PES, eFootball, Free Fire et plus encore. Prix en dinars, contact direct via Facebook, transactions sûres et rapides."
   },
   "nav": {
     "home": "Accueil",
@@ -17,9 +17,10 @@
     "badge": "La plateforme n°1 des comptes gaming en Tunisie",
     "titleLine1": "Comptes gaming",
     "titleLine2": "au prix tunisien",
-    "subtitle": "PES, eFootball, Free Fire et bien plus — des comptes vérifiés et garantis, un contact direct avec le vendeur sur WhatsApp et un paiement en dinars, sans intermédiaire.",
+    "subtitle": "PES, eFootball, Free Fire et bien plus — des comptes vérifiés et garantis, contactez-nous directement sur Facebook ou WhatsApp et payez en dinars, sans intermédiaire.",
     "ctaBrowse": "Parcourir les comptes",
     "ctaSell": "Vendre mon compte",
+    "ctaFacebook": "Notre page Facebook",
     "statsAvailable": "comptes disponibles",
     "statsCategories": "catégories de jeux",
     "statsSold": "ventes réussies"
@@ -58,8 +59,9 @@
     "category": "Catégorie",
     "status": "Statut",
     "addedOn": "Ajouté le",
+    "contactFacebook": "Visitez notre page Facebook",
     "contactWhatsapp": "Contacter sur WhatsApp",
-    "callToBuy": "Acheter maintenant",
+    "noDescription": "Aucune description disponible pour le moment — contactez-nous sur Facebook pour en savoir plus.",
     "soldOut": "Vendu",
     "related": "Comptes similaires",
     "backToCatalog": "Retour à la boutique",
@@ -69,8 +71,8 @@
     "title": "Comment ça marche ?",
     "step1Title": "Trouvez votre compte",
     "step1Desc": "Parcourez la boutique et filtrez par jeu, budget ou disponibilité pour dénicher la meilleure offre.",
-    "step2Title": "Discutez avec le vendeur",
-    "step2Desc": "Chaque annonce affiche un bouton WhatsApp : posez vos questions et vérifiez les détails avant de payer.",
+    "step2Title": "Contactez-nous",
+    "step2Desc": "Chaque annonce affiche des liens directs vers notre page Facebook et WhatsApp : posez vos questions et vérifiez les détails avant de payer.",
     "step3Title": "Payez et récupérez",
     "step3Desc": "Convenez du paiement en dinars avec le vendeur et recevez vos identifiants directement, en toute sécurité."
   },
@@ -152,6 +154,7 @@
     "language": "Langue",
     "whatsapp": "WhatsApp",
     "call": "Appeler",
+    "facebook": "Facebook",
     "currencyTnd": "DT",
     "currencyEur": "€"
   },
@@ -163,7 +166,8 @@
     "genericError": "Une erreur inattendue s'est produite. Veuillez réessayer dans un instant."
   },
   "storefront": {
-    "ctaTitle": "Une question ? Parlons-en maintenant",
-    "ctaSubtitle": "L'équipe GameStore TN est disponible sur WhatsApp pour répondre à toutes vos questions et vous aider à trouver le compte qui vous convient."
+    "ctaTitle": "Une question ? Contactez-nous maintenant",
+    "ctaSubtitle": "L'équipe GameStore TN est disponible sur Facebook et WhatsApp pour répondre à toutes vos questions et vous aider à trouver le compte qui vous convient.",
+    "ctaFacebook": "Visitez notre page Facebook"
   }
 }

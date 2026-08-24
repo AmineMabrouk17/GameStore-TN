@@ -1,10 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
 import { MessageCircle, Sparkles, Store, TrendingUp } from "lucide-react";
+import FacebookIcon from "@/components/FacebookIcon";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { buildGenericWhatsappUrl } from "@/lib/whatsapp";
+import { FACEBOOK_PAGE_URL } from "@/lib/facebook";
 import type { Locale } from "@/types";
 
 interface HeroSectionProps {
@@ -66,7 +68,12 @@ export default async function HeroSection({ stats }: HeroSectionProps) {
                 </Button>
               </a>
             )}
-          </div>
+            <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline">
+                <FacebookIcon className="size-5" aria-hidden />
+                {t("ctaFacebook")}
+              </Button>
+            </a>          </div>
         </FadeIn>
 
         <FadeIn delay={0.4}>
