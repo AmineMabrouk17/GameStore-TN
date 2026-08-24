@@ -55,6 +55,15 @@ INSERT INTO products (id, title_ar, title_fr, category_id, price, currency, desc
      '["/games/pubg.svg"]',
      'SOLD', 0, datetime('now', '-6 days')),
 
+    ('pubg-uc-starter',
+     'حساب ببجي موبايل — 660 UC + بدلات نادرة',
+     'Compte PUBG Mobile — 660 UC + tenues rares',
+     'cat-pubg', 60.0, 'TND',
+     'حساب ببجي موبايل مع 660 UC، بدلات M416 مطورة ومستوى Royale Pass نشط.',
+     'Compte PUBG Mobile avec 660 UC, M416 améliorée et Royal Pass actif.',
+     '["/games/pubg.svg"]',
+     'AVAILABLE', 0, datetime('now', '-4 days')),
+
     ('valorant-radiant-smurf',
      'حساب Valorant — Radiant سابق + سكنات Prime',
      'Compte Valorant — Ex-Radiant + skins Prime',
