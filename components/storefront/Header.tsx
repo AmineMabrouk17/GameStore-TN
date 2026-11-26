@@ -89,7 +89,7 @@ export default function Header() {
               rel="noopener noreferrer"
               className="hidden sm:block"
             >
-              <Button size="sm" variant="secondary" className="glow-cyan">
+              <Button size="sm">
                 {tc("whatsapp")}
               </Button>
             </a>

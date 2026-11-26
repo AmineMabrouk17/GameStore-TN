@@ -61,8 +61,18 @@ export default async function StorefrontLandingPage() {
                   ),
                 )}
             </h2>
-            <p className="relative mx-auto mt-4 max-w-xl text-neutral-300">
-              {t("ctaSubtitle")}
+            <p className="relative mx-auto mt-4 max-w-xl text-muted-foreground">
+              {t("ctaSubtitle")
+                .split(/(GameStore TN|Facebook|WhatsApp|فيسبوك|واتساب)/g)
+                .map((part, i) =>
+                  /^(GameStore TN|Facebook|WhatsApp|فيسبوك|واتساب)$/.test(part) ? (
+                    <span key={i} className="font-semibold text-primary">
+                      {part}
+                    </span>
+                  ) : (
+                    part
+                  ),
+                )}
             </p>
             <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
               <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer">
