@@ -76,14 +76,14 @@ export default async function StorefrontLandingPage() {
             </p>
             <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
               <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="glow-cyan">
+                <Button size="lg">
                   <FacebookIcon className="size-5" aria-hidden />
                   {t("ctaFacebook")}
                 </Button>
               </a>
               {whatsappHref && (
                 <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" variant="secondary" className="glow-magenta">
+                  <Button size="lg" variant="outline">
                     <MessageCircle className="size-5" aria-hidden />
                     WhatsApp
                   </Button>

@@ -131,7 +131,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
           <h1 className="mt-4 text-3xl font-black leading-tight sm:text-4xl">{title}</h1>
 
-          <p className="mt-4 text-4xl font-black text-cyan-300 glow-cyan rounded-xl inline-block px-2">
+          <p className="mt-4 text-4xl font-black text-primary rounded-xl inline-block px-2">
             {formatPrice(product.price, product.currency, locale)}
           </p>
 
@@ -160,7 +160,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <div className="flex flex-col gap-3 sm:flex-row">
             {!isSold && (
               <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer" className="flex-1">
-                <Button size="lg" className="w-full glow-cyan">
+                <Button size="lg" className="w-full">
                   <FacebookIcon className="size-5" aria-hidden />
                   {tp("contactFacebook")}
                 </Button>
@@ -168,7 +168,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             )}
             {!isSold && whatsappHref && (
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex-1">
-                <Button size="lg" variant="secondary" className="w-full glow-magenta">
+                <Button size="lg" variant="outline" className="w-full">
                   <MessageCircle className="size-5" aria-hidden />
                   {tp("contactWhatsapp")}
                 </Button>
