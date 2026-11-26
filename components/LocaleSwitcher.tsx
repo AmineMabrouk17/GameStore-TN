@@ -34,7 +34,7 @@ function Switcher() {
     <div
       role="group"
       aria-label={t("language")}
-      className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 text-xs font-bold"
+      className="flex items-center gap-1 rounded-full border border-border bg-white/5 p-1 text-xs font-bold"
     >
       {routing.locales.map((loc) => {
         const isActive = loc === active;
@@ -48,8 +48,8 @@ function Switcher() {
             aria-pressed={isActive}
             className={`rounded-full px-2.5 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 sm:px-3 ${
               isActive
-                ? "bg-emerald-500 text-neutral-950"
-                : "text-neutral-300 hover:text-white"
+                ? "bg-primary text-primary-foreground"
+                : "text-neutral-300 hover:text-primary"
             } ${pending ? "opacity-60" : ""}`}
           >
             <span className="hidden sm:inline">{LOCALE_LABELS[loc]}</span>
