@@ -15,7 +15,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
   default:
-    "bg-linear-to-r from-primary to-cyan-300 text-primary-foreground shadow-md shadow-cyan-500/25 hover:shadow-lg hover:shadow-cyan-400/40 hover:brightness-110",
+    "bg-primary text-primary-foreground shadow-md shadow-primary/20 hover:brightness-105 hover:shadow-lg hover:shadow-primary/30",
   secondary:
     "border border-white/10 bg-white/[0.07] text-foreground backdrop-blur-md hover:bg-white/[0.12]",
   outline:
