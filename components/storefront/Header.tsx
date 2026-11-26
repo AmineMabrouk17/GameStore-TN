@@ -40,8 +40,11 @@ export default function Header() {
             aria-hidden
             className="size-9 rounded-xl object-cover glow-cyan ring-1 ring-white/15"
           />
-          <span>
-            GameStore<span className="text-gradient"> TN</span>
+          <span className="flex items-center gap-1.5">
+            GameStore
+            <span className="rounded-[5px] bg-primary px-1.5 text-[0.9em] leading-tight text-primary-foreground">
+              TN
+            </span>
           </span>
         </Link>
 
@@ -56,7 +59,7 @@ export default function Header() {
                 className={cn(
                   "rounded-full px-4 py-2 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
                   active
-                    ? "bg-white/10 text-white"
+                    ? "bg-primary/15 text-primary"
                     : "text-neutral-300 hover:bg-white/5 hover:text-white",
                 )}
               >
