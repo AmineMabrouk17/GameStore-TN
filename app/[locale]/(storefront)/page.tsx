@@ -36,6 +36,7 @@ export default async function StorefrontLandingPage() {
           categories: categories.length,
           sold: sold.total,
         }}
+        product={featured.at(0) ?? null}
       />
 
       <CategoryStrip categories={categories} />
