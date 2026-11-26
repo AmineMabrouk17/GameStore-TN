@@ -23,7 +23,9 @@
     "ctaFacebook": "صفحتنا على فيسبوك",
     "statsAvailable": "حساب متوفر",
     "statsCategories": "نوع ألعاب",
-    "statsSold": "عملية بيع ناجحة"
+    "statsSold": "عملية بيع ناجحة",
+    "viewAccount": "شوف التفاصيل",
+    "buyWhatsapp": "اشري على واتساب"
   },
   "catalog": {
     "title": "الحسابات المتوفرة",

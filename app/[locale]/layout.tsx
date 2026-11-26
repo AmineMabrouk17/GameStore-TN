@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { GeistSans } from "geist/font/sans";
+import { Cairo } from "next/font/google";
 import { hasLocale } from "use-intl";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -10,8 +11,15 @@ import Toaster from "@/components/providers/Toaster";
 import { SITE_NAME, getMetadataBase, localeAlternates, openGraphLocale } from "@/lib/seo";
 import "../globals.css";
 
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "600", "800", "900"],
+  variable: "--font-cairo",
+  display: "swap",
+});
+
 const ARABIC_FONT_STACK =
-  '"SF Arabic", "Segoe UI", Tahoma, "Noto Kufi Arabic", "Noto Sans Arabic", sans-serif';
+  'var(--font-cairo), "Noto Kufi Arabic", "Noto Sans Arabic", sans-serif';
 const LATIN_FONT_STACK =
   "var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif";
 
@@ -75,10 +83,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     <html
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
-      className={GeistSans.variable}
+      className={`${GeistSans.variable} ${cairo.variable}`}
     >
       <body
-        className="min-h-dvh bg-neutral-950 text-neutral-100 antialiased"
+        className="min-h-dvh bg-background text-foreground antialiased"
         style={{
           fontFamily: locale === "ar" ? ARABIC_FONT_STACK : LATIN_FONT_STACK,
         }}

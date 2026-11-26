@@ -23,7 +23,9 @@
     "ctaFacebook": "Notre page Facebook",
     "statsAvailable": "comptes disponibles",
     "statsCategories": "catégories de jeux",
-    "statsSold": "ventes réussies"
+    "statsSold": "ventes réussies",
+    "viewAccount": "Voir le compte",
+    "buyWhatsapp": "Acheter sur WhatsApp"
   },
   "catalog": {
     "title": "Comptes disponibles",

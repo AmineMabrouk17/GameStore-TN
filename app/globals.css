@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), "Geist", ui-sans-serif, system-ui,
+  --font-sans: var(--font-cairo), var(--font-geist-sans), "Geist", ui-sans-serif, system-ui,
     "Segoe UI", Tahoma, Arial, "Noto Sans Arabic", sans-serif;
   --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, SFMono-Regular,
     Menlo, Consolas, monospace;
 
-  --color-background: #05060f;
-  --color-foreground: #e6e9f5;
+  --color-background: #07060d;
+  --color-foreground: #f2f0fb;
 
-  --color-surface: #0a0d1c;
-  --color-card: #0e1226;
+  --color-surface: #0b0914;
+  --color-card: #0d0b18;
 
-  --color-muted: #151a33;
-  --color-muted-foreground: #8a91b4;
+  --color-muted: #131124;
+  --color-muted-foreground: #9892b8;
 
-  --color-border: rgb(148 163 184 / 0.14);
-  --color-input: rgb(148 163 184 / 0.18);
-  --color-ring: #22d3ee;
+  --color-border: rgb(190 185 225 / 0.14);
+  --color-input: rgb(190 185 225 / 0.18);
+  --color-ring: #ccff33;
 
-  --color-primary: #22d3ee;
-  --color-primary-foreground: #04121a;
+  --color-primary: #ccff33;
+  --color-primary-foreground: #101503;
 
-  --color-secondary: #1b2140;
-  --color-secondary-foreground: #cbd5f5;
+  --color-secondary: #1a1730;
+  --color-secondary-foreground: #ded9f2;
 
-  --color-accent: #ff2ee6;
+  --color-accent: #ff36e0;
   --color-accent-foreground: #ffffff;
 
   --color-violet: #8b5cf6;
