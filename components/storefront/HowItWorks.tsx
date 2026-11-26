@@ -15,7 +15,17 @@ export default async function HowItWorks() {
     <section id="how-it-works" className="mx-auto max-w-7xl scroll-mt-24 px-4 sm:px-6">
       <FadeIn>
         <h2 className="text-center text-2xl font-black sm:text-3xl">
-          <span className="text-gradient">{t("title")}</span>
+          {t("title")
+            .split(/([?؟])/)
+            .map((part, i) =>
+              /[?؟]/.test(part) ? (
+                <span key={i} className="text-primary">
+                  {part}
+                </span>
+              ) : (
+                part
+              ),
+            )}
         </h2>
       </FadeIn>
 
@@ -24,7 +34,7 @@ export default async function HowItWorks() {
           <FadeIn key={step.title} delay={index * 0.12}>
             <div className="glass relative h-full rounded-2xl p-6 transition-transform hover:-translate-y-1">
               <span
-                className="absolute end-5 top-5 text-5xl font-black text-white/5"
+                className="absolute end-5 top-5 text-5xl font-black text-primary/20"
                 aria-hidden
               >
                 {index + 1}

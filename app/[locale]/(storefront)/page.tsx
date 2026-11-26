@@ -47,13 +47,19 @@ export default async function StorefrontLandingPage() {
 
       <section className="mx-auto max-w-7xl px-4 sm:px-6">
         <FadeIn>
-          <div className="glass relative overflow-hidden rounded-3xl p-10 text-center sm:p-14">
-            <div
-              className="absolute -top-20 start-1/2 size-72 -translate-x-1/2 rounded-full bg-primary/20 blur-[100px]"
-              aria-hidden
-            />
-            <h2 className="text-gradient relative text-3xl font-black sm:text-4xl">
-              {t("ctaTitle")}
+          <div className="relative overflow-hidden rounded-3xl border border-[rgb(204_255_51/0.35)] bg-gradient-to-b from-primary/[0.06] to-transparent p-10 text-center sm:p-14">
+            <h2 className="relative text-3xl font-black sm:text-4xl">
+              {t("ctaTitle")
+                .split(/([?؟])/)
+                .map((part, i) =>
+                  /[?؟]/.test(part) ? (
+                    <span key={i} className="text-primary">
+                      {part}
+                    </span>
+                  ) : (
+                    part
+                  ),
+                )}
             </h2>
             <p className="relative mx-auto mt-4 max-w-xl text-neutral-300">
               {t("ctaSubtitle")}
