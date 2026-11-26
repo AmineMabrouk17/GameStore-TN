@@ -86,4 +86,8 @@ jobs:
         run: printf '%s' "$ADMIN_JWT_SECRET" | npx wrangler secret put ADMIN_JWT_SECRET
 
       - name: Deploy worker
-        run: npx opennextjs-cloudflare deploy --skipBuild
+        run: npm run cf:deploy
+        env:
+          NEXT_PUBLIC_SELLER_PHONE: ${{ vars.NEXT_PUBLIC_SELLER_PHONE }}
+          NEXT_PUBLIC_WHATSAPP_NUMBER: ${{ vars.NEXT_PUBLIC_WHATSAPP_NUMBER }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
